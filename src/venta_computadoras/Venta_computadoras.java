@@ -1,8 +1,8 @@
 package venta_computadoras;
 
 import java.util.Scanner;
-import venta_computadoras.controller.Estructura_empleados;
-import venta_computadoras.controller.GastosManager;
+import venta_computadoras.controller.SueldosManager;
+import venta_computadoras.database.Empleados;
 
 public class Venta_computadoras {
 
@@ -10,12 +10,16 @@ public class Venta_computadoras {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
+        // Instanciamos la clase Empleados para obtener la lista predefinida
+        Empleados listaEmpleados = new Empleados(); // Cargamos la lista de empleados predefinidos
+
         do {
             System.out.println("\n--- Seleccione el numero de modulo ---");
             System.out.println("1. Estructura organizaciones");
             System.out.println("2. Estrategia de contratación");
             System.out.println("3. Personal en las áreas, de compras, ventas, marketing, IT, recursos humanos, finanzas");
             System.out.println("4. Gestión de Gastos Fijos y Variables");
+            System.out.println("5. Gestión de Sueldos");//Uso de herencia, se hereda del objeto empleado para asignar y mostrar sueldos
             System.out.println("20. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -23,15 +27,17 @@ public class Venta_computadoras {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("\n \n Las opciones disponibles para Estructura organizaciones son:");
-                    Estructura_empleados estructuraEmpleados = new Estructura_empleados();
-                    estructuraEmpleados.opcion_empleados();
+                    // Aquí estaría la lógica de estructura de organizaciones
                     break;
 
                 case 4:
-                    System.out.println("\n \n Las opciones disponibles para Gestión de Gastos Fijos y Variables son:");
-                    GastosManager gestorDeGastos = new GastosManager(); // Instanciar GastosManager
-                    gestorDeGastos.gestionarGastos(); // Llamar al método para gestionar gastos
+                    // Aquí estaría la lógica de gestión de gastos
+                    break;
+
+                case 5:
+                    // Para gestionar sueldos, pasamos la lista de empleados predefinidos
+                    SueldosManager gestorDeSueldos = new SueldosManager(listaEmpleados.listEmpleados); // Pasar la lista predefinida
+                    gestorDeSueldos.gestionarSueldos(); // Llamar al método para gestionar sueldos
                     break;
 
                 case 20:
