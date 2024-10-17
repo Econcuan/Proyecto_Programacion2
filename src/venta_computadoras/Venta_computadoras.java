@@ -3,6 +3,7 @@ package venta_computadoras;
 import java.util.Scanner;
 import venta_computadoras.manager.SueldosManager;
 import venta_computadoras.database.Empleados;
+import venta_computadoras.manager.EstrategiaManager;
 import venta_computadoras.manager.MotivacionManager;
 
 public class Venta_computadoras {
@@ -22,6 +23,7 @@ public class Venta_computadoras {
             System.out.println("4. Gestión de Gastos Fijos y Variables");
             System.out.println("5. Gestión de Sueldos"); // Uso de herencia, se hereda del objeto empleado para asignar y mostrar sueldos
             System.out.println("6. Gestión de Motivación a Empleados"); // Opción para motivación a empleados
+            System.out.println("7. Gestión de Estrategia Empresarial"); // Opción para la estrategia empresarial
             System.out.println("20. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -46,6 +48,12 @@ public class Venta_computadoras {
                     // Para gestionar motivaciones, pasamos la lista de empleados
                     MotivacionManager gestorDeMotivacion = new MotivacionManager(listaEmpleados);
                     gestorDeMotivacion.gestionarMotivaciones(); // Llamar al método para gestionar motivaciones
+                    break;
+
+                case 7:
+                    // Para gestionar la estrategia empresarial, pasamos la lista de empleados
+                    EstrategiaManager gestorDeEstrategia = new EstrategiaManager(listaEmpleados);
+                    gestorDeEstrategia.gestionarEstrategia(); // Llamar al método para gestionar la estrategia empresarial
                     break;
 
                 case 20:
