@@ -1,4 +1,4 @@
-package venta_computadoras.controller;
+package venta_computadoras.manager;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
