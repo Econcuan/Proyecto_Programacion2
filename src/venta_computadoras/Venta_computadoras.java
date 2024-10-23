@@ -3,6 +3,9 @@ package venta_computadoras;
 import java.util.Scanner;
 import venta_computadoras.manager.SueldosManager;
 import venta_computadoras.database.Empleados;
+import venta_computadoras.manager.ControlAccesoManager;
+import venta_computadoras.manager.ControlEmpleadosManager;
+import venta_computadoras.manager.DisenoDepartamentalManager;
 import venta_computadoras.manager.EstrategiaManager;
 import venta_computadoras.manager.MotivacionManager;
 
@@ -21,9 +24,12 @@ public class Venta_computadoras {
             System.out.println("2. Estrategia de contratación");
             System.out.println("3. Personal en las áreas, de compras, ventas, marketing, IT, recursos humanos, finanzas");
             System.out.println("4. Gestión de Gastos Fijos y Variables");
-            System.out.println("5. Gestión de Sueldos"); // Uso de herencia, se hereda del objeto empleado para asignar y mostrar sueldos
-            System.out.println("6. Gestión de Motivación a Empleados"); // Opción para motivación a empleados
-            System.out.println("7. Gestión de Estrategia Empresarial"); // Opción para la estrategia empresarial
+            System.out.println("5. Gestión de Sueldos");
+            System.out.println("6. Gestión de Motivación a Empleados");
+            System.out.println("7. Gestión de Estrategia Empresarial");
+            System.out.println("8. Gestión de Diseño Departamental");
+            System.out.println("9. Control de Empleados");
+            System.out.println("10. Control de Accesos de RRHH"); // NUEVO MÓDULO
             System.out.println("20. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -39,21 +45,40 @@ public class Venta_computadoras {
                     break;
 
                 case 5:
-                    // Para gestionar sueldos, pasamos la lista de empleados predefinidos
-                    SueldosManager gestorDeSueldos = new SueldosManager(listaEmpleados.listEmpleados); // Pasar la lista predefinida
-                    gestorDeSueldos.gestionarSueldos(); // Llamar al método para gestionar sueldos
+                    // Gestión de sueldos
+                    SueldosManager gestorDeSueldos = new SueldosManager(listaEmpleados.listEmpleados);
+                    gestorDeSueldos.gestionarSueldos();
                     break;
 
                 case 6:
-                    // Para gestionar motivaciones, pasamos la lista de empleados
+                    // Gestión de motivaciones
                     MotivacionManager gestorDeMotivacion = new MotivacionManager(listaEmpleados);
-                    gestorDeMotivacion.gestionarMotivaciones(); // Llamar al método para gestionar motivaciones
+                    gestorDeMotivacion.gestionarMotivaciones();
                     break;
 
                 case 7:
-                    // Para gestionar la estrategia empresarial, pasamos la lista de empleados
+                    // Gestión de estrategia empresarial
                     EstrategiaManager gestorDeEstrategia = new EstrategiaManager(listaEmpleados);
-                    gestorDeEstrategia.gestionarEstrategia(); // Llamar al método para gestionar la estrategia empresarial
+                    gestorDeEstrategia.gestionarEstrategia();
+                    break;
+
+                case 8:
+                    // Gestión de diseño departamental
+                    DisenoDepartamentalManager gestorDeDiseno = new DisenoDepartamentalManager(listaEmpleados);
+                    gestorDeDiseno.gestionarDisenoDepartamental();
+                    break;
+
+                case 9:
+                    // Gestión del control de accesos de RRHH
+                    ControlAccesoManager gestorAcceso = new ControlAccesoManager();
+                    gestorAcceso.gestionarAccesos();
+                    break;
+
+                case 10:
+                    // Gestión del control de empleados
+                    ControlEmpleadosManager gestorControlEmpleados = new ControlEmpleadosManager();
+                    gestorControlEmpleados.gestionarControlEmpleados();
+
                     break;
 
                 case 20:
