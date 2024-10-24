@@ -19,10 +19,33 @@ public class Venta_computadoras {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int opcion;
 
-        // Instanciamos la clase Empleados para obtener la lista predefinida
+        if (login(scanner)) {
+            mostrarMenu(scanner);
+        } else {
+            System.out.println("Acceso denegado. Usuario o contraseña incorrectos.");
+        }
+
+        scanner.close();
+    }
+
+    // Función de login para validar usuario y contraseña
+    private static boolean login(Scanner scanner) {
+        System.out.println("--- Login de Administrador ---");
+        System.out.print("Ingrese el usuario: ");
+        String usuario = scanner.nextLine();
+
+        System.out.print("Ingrese la contraseña: ");
+        String password = scanner.nextLine();
+
+        // Verificamos si el usuario y contraseña son correctos
+        return usuario.equals("admin") && password.equals("admin");
+    }
+
+    // Función para mostrar el menú y gestionar la selección de opciones
+    private static void mostrarMenu(Scanner scanner) {
         Empleados listaEmpleados = new Empleados(); // Cargamos la lista de empleados predefinidos
+        int opcion;
 
         do {
             System.out.println("\n--- Seleccione el número de módulo ---");
@@ -51,11 +74,9 @@ public class Venta_computadoras {
                 case 1:
                     // Aquí estaría la lógica de estructura de organizaciones
                     break;
-
                 case 4:
                     // Aquí estaría la lógica de gestión de gastos
                     break;
-
                 case 5:
                     // Gestión de sueldos
                     SueldosManager gestorDeSueldos = new SueldosManager(listaEmpleados.listEmpleados);
@@ -71,31 +92,26 @@ public class Venta_computadoras {
                     EstrategiaManager gestorDeEstrategia = new EstrategiaManager(listaEmpleados);
                     gestorDeEstrategia.gestionarEstrategia();
                     break;
-
                 case 8:
                     // Gestión de diseño departamental
                     DisenoDepartamentalManager gestorDeDiseno = new DisenoDepartamentalManager(listaEmpleados);
                     gestorDeDiseno.gestionarDisenoDepartamental();
                     break;
-
                 case 9:
                     // Gestión del control de accesos de RRHH
                     ControlAccesoManager gestorAcceso = new ControlAccesoManager();
                     gestorAcceso.gestionarAccesos();
                     break;
-
                 case 10:
                     // Gestión del control de empleados
                     ControlEmpleadosManager gestorControlEmpleados = new ControlEmpleadosManager();
                     gestorControlEmpleados.gestionarControlEmpleados();
                     break;
-
                 case 11:
                     // Gestión del perfil de las contrataciones
                     PerfilContratacionesManager gestorPerfilContrataciones = new PerfilContratacionesManager();
                     gestorPerfilContrataciones.gestionarPerfilesContrataciones();
                     break;
-
                 case 12:
                     // Gestión de prestaciones
                     PrestacionesManager gestorPrestaciones = new PrestacionesManager();
@@ -124,13 +140,10 @@ public class Venta_computadoras {
                 case 20:
                     System.out.println("Saliendo del programa...");
                     break;
-
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
                     break;
             }
         } while (opcion != 20);
-
-        scanner.close();
     }
 }
