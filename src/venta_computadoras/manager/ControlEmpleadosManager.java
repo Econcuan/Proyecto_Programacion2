@@ -8,10 +8,10 @@ import venta_computadoras.database.Empleados;
 import venta_computadoras.objetos.empleadosModel;
 import java.util.Scanner;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class ControlEmpleadosManager extends Empleados {
 
     // Constructor

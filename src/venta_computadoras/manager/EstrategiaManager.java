@@ -9,10 +9,10 @@ import java.util.Scanner;
 import venta_computadoras.database.Empleados;
 import venta_computadoras.objetos.EmpleadoEstrategico;
 import venta_computadoras.objetos.empleadosModel;
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class EstrategiaManager {
 
     private String vision;

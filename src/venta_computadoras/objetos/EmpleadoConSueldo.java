@@ -4,10 +4,10 @@
  */
 package venta_computadoras.objetos;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class EmpleadoConSueldo extends empleadosModel {
 
     private double sueldoBase;

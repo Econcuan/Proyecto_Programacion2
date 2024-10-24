@@ -5,10 +5,10 @@
 package venta_computadoras.objetos;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class MotivacionEmpleado extends empleadosModel {
 
     private List<String> reconocimientos;  // Lista de reconocimientos o premios

@@ -10,10 +10,10 @@ import java.util.Scanner;
 import venta_computadoras.database.gastos;
 import venta_computadoras.objetos.gastosModel;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class GastosManager {
 
     private List<gastosModel> listaGastos;

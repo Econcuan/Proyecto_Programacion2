@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import venta_computadoras.objetos.empleadosModel;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class Empleados {
 
     // Lista de empleados predefinidos como objetos de empleadosModel

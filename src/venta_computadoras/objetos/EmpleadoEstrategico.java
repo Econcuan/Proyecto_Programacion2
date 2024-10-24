@@ -6,10 +6,10 @@ import java.util.List;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class EmpleadoEstrategico extends empleadosModel {
 
     private String objetivoAsignado;          // Objetivo estratégico asignado

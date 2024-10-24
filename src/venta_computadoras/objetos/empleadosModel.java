@@ -7,10 +7,9 @@ package venta_computadoras.objetos;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class empleadosModel {
 
     private String perfil;

@@ -11,10 +11,10 @@ import venta_computadoras.database.Empleados;
 import venta_computadoras.objetos.Departamento;
 import venta_computadoras.objetos.empleadosModel;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class DisenoDepartamentalManager {
 
     private Empleados empleados; // La lista de empleados

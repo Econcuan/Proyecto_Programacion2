@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class TalentoHumanoManager extends Empleados { // Heredando de Empleados
 
     private List<Capacitacion> capacitaciones;

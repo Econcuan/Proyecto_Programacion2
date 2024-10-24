@@ -4,154 +4,106 @@
  */
 package venta_computadoras.manager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import venta_computadoras.database.Empleados;
-import venta_computadoras.objetos.MotivacionEmpleado;
+import venta_computadoras.objetos.MotivacionModel;
 import venta_computadoras.objetos.empleadosModel;
 
-/**
- *
- * @author agr12
- */
-public class MotivacionManager {
 
-    private List<MotivacionEmpleado> listaMotivaciones;
 
-    // Constructor que recibe la lista de empleados desde la clase Empleados
-    public MotivacionManager(Empleados empleados) {
-        this.listaMotivaciones = new ArrayList<>();
 
-        // Inicializar la lista de empleados con motivaciones a partir de la lista predefinida de empleados
-        for (empleadosModel empleado : empleados.listEmpleados) {
-            listaMotivaciones.add(new MotivacionEmpleado(empleado.getPerfil(), empleado.getNombre(), empleado.getCodigoEmpleado()));
+
+public class MotivacionManager extends Empleados {
+
+    // Mapa para almacenar las motivaciones de cada empleado por su código
+    private Map<String, MotivacionModel> motivacionesMap;
+
+    // Constructor
+    public MotivacionManager() {
+        super(); // Inicializa empleados
+        motivacionesMap = new HashMap<>();
+        inicializarMotivaciones(); // Inicializa las motivaciones para cada empleado
+    }
+
+    // Método para inicializar las motivaciones de cada empleado
+    private void inicializarMotivaciones() {
+        for (empleadosModel empleado : listEmpleados) {
+            motivacionesMap.put(empleado.getCodigoEmpleado(), new MotivacionModel()); // Asigna un objeto MotivacionModel por empleado
         }
     }
 
-    // Método para gestionar el menú de motivaciones
+    // Método para gestionar las motivaciones de empleados
     public void gestionarMotivaciones() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
         do {
-            System.out.println("\n--- Gestión de Motivaciones ---");
-            System.out.println("1. Mostrar motivaciones de todos los empleados");
-            System.out.println("2. Mostrar empleados con premios o motivaciones");
-            System.out.println("3. Agregar premio o motivación");
-            System.out.println("4. Asignar puntaje de buen empleado");
-            System.out.println("5. Ascender empleado");
-            System.out.println("6. Salir");
+            System.out.println("\n--- Gestión de Motivación a Empleados ---");
+            System.out.println("1. Ver motivaciones de los empleados");
+            System.out.println("2. Asignar reconocimiento o premio");
+            System.out.println("3. Ver puntaje de buen empleado");
+            System.out.println("4. Volver");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
 
             switch (opcion) {
                 case 1:
-                    mostrarMotivacionesTodos();
+                    mostrarMotivaciones();
                     break;
 
                 case 2:
-                    mostrarEmpleadosConPremios();
+                    asignarPremioReconocimiento(scanner);
                     break;
 
                 case 3:
-                    agregarPremioOMotivacion(scanner);
+                    mostrarPuntajes();
                     break;
 
                 case 4:
-                    asignarPuntajeBuenEmpleado(scanner);
-                    break;
-
-                case 5:
-                    ascenderEmpleado(scanner);
-                    break;
-
-                case 6:
-                    System.out.println("Saliendo del módulo de motivaciones...");
+                    System.out.println("Volviendo al menú principal...");
                     break;
 
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
                     break;
             }
-        } while (opcion != 6);
-
-        scanner.close();
+        } while (opcion != 4);
     }
 
-    // Método para mostrar motivaciones de todos los empleados
-    private void mostrarMotivacionesTodos() {
-        System.out.println("\n--- Motivaciones de Todos los Empleados ---");
-        for (MotivacionEmpleado empleado : listaMotivaciones) {
-            System.out.println(empleado);
+    // Método para mostrar las motivaciones de los empleados
+    private void mostrarMotivaciones() {
+        System.out.println("\n--- Motivaciones y Premios de Empleados ---");
+        for (Map.Entry<String, MotivacionModel> entry : motivacionesMap.entrySet()) {
+            System.out.println("Empleado: " + entry.getKey() + " - Motivaciones: " + entry.getValue().getReconocimientos());
         }
     }
 
-    // Método para mostrar empleados que tienen premios o motivaciones
-    private void mostrarEmpleadosConPremios() {
-        System.out.println("\n--- Empleados con Premios o Motivaciones ---");
-        for (MotivacionEmpleado empleado : listaMotivaciones) {
-            if (!empleado.getReconocimientos().isEmpty()) {
-                System.out.println(empleado);
-            }
-        }
-    }
-
-    // Método para agregar un premio o motivación
-    private void agregarPremioOMotivacion(Scanner scanner) {
+    // Método para asignar un premio o reconocimiento a un empleado
+    private void asignarPremioReconocimiento(Scanner scanner) {
         System.out.print("Ingrese el código del empleado: ");
-        String codigo = scanner.nextLine();
+        String codigoEmpleado = scanner.nextLine();
 
-        MotivacionEmpleado empleado = buscarEmpleadoPorCodigo(codigo);
-        if (empleado != null) {
-            System.out.print("Ingrese el reconocimiento o motivación: ");
-            String reconocimiento = scanner.nextLine();
-            empleado.agregarReconocimiento(reconocimiento);
-            System.out.println("Reconocimiento agregado exitosamente.");
+        if (motivacionesMap.containsKey(codigoEmpleado)) {
+            System.out.print("Ingrese la motivación o premio: ");
+            String motivacion = scanner.nextLine();
+
+            // Asigna el reconocimiento al empleado
+            motivacionesMap.get(codigoEmpleado).agregarReconocimiento(motivacion);
+
+            System.out.println("Premio o reconocimiento asignado exitosamente.");
         } else {
-            System.out.println("Empleado no encontrado.");
+            System.out.println("Código de empleado no válido.");
         }
     }
 
-    // Método para asignar puntaje de buen empleado
-    private void asignarPuntajeBuenEmpleado(Scanner scanner) {
-        System.out.print("Ingrese el código del empleado: ");
-        String codigo = scanner.nextLine();
-
-        MotivacionEmpleado empleado = buscarEmpleadoPorCodigo(codigo);
-        if (empleado != null) {
-            System.out.print("Ingrese el puntaje de buen empleado: ");
-            double puntaje = scanner.nextDouble();
-            scanner.nextLine(); // Limpiar el buffer
-            empleado.setPuntajeBuenEmpleado(puntaje);
-            System.out.println("Puntaje asignado exitosamente.");
-        } else {
-            System.out.println("Empleado no encontrado.");
+    // Método para mostrar el puntaje de los empleados
+    private void mostrarPuntajes() {
+        System.out.println("\n--- Puntaje de Buen Empleado ---");
+        for (Map.Entry<String, MotivacionModel> entry : motivacionesMap.entrySet()) {
+            System.out.println("Empleado: " + entry.getKey() + " - Puntaje: " + entry.getValue().getPuntaje());
         }
-    }
-
-    // Método para ascender un empleado
-    private void ascenderEmpleado(Scanner scanner) {
-        System.out.print("Ingrese el código del empleado: ");
-        String codigo = scanner.nextLine();
-
-        MotivacionEmpleado empleado = buscarEmpleadoPorCodigo(codigo);
-        if (empleado != null) {
-            empleado.setAscenso(true);
-            System.out.println("Empleado ascendido exitosamente.");
-        } else {
-            System.out.println("Empleado no encontrado.");
-        }
-    }
-
-    // Método para buscar un empleado por su código
-    private MotivacionEmpleado buscarEmpleadoPorCodigo(String codigoEmpleado) {
-        for (MotivacionEmpleado empleado : listaMotivaciones) {
-            if (empleado.getCodigoEmpleado().equalsIgnoreCase(codigoEmpleado)) {
-                return empleado;
-            }
-        }
-        return null;
     }
 }

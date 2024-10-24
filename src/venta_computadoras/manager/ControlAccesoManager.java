@@ -8,10 +8,9 @@ import venta_computadoras.database.Empleados;
 import venta_computadoras.objetos.ControlAccesoRRHH;
 import java.util.Scanner;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class ControlAccesoManager extends Empleados {
 
     // Método para gestionar el control de accesos

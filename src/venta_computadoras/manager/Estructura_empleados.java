@@ -10,10 +10,10 @@ import java.util.Scanner;
 import venta_computadoras.database.Empleados;
 import venta_computadoras.objetos.empleadosModel;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class Estructura_empleados {
 
     public void opcion_empleados() {

@@ -6,8 +6,14 @@ import venta_computadoras.database.Empleados;
 import venta_computadoras.manager.ControlAccesoManager;
 import venta_computadoras.manager.ControlEmpleadosManager;
 import venta_computadoras.manager.DisenoDepartamentalManager;
+import venta_computadoras.manager.EstandaresManager;
 import venta_computadoras.manager.EstrategiaManager;
 import venta_computadoras.manager.MotivacionManager;
+import venta_computadoras.manager.PerfilContratacionesManager;
+import venta_computadoras.manager.PrestacionesManager;
+import venta_computadoras.manager.PresupuestoPlanillaManager;
+import venta_computadoras.manager.PropuestaEstabilidadManager;
+import venta_computadoras.manager.SupervisionManager;
 
 public class Venta_computadoras {
 
@@ -29,7 +35,13 @@ public class Venta_computadoras {
             System.out.println("7. Gestión de Estrategia Empresarial");
             System.out.println("8. Gestión de Diseño Departamental");
             System.out.println("9. Control de Empleados");
-            System.out.println("10. Control de Accesos de RRHH"); // NUEVO MÓDULO
+            System.out.println("10. Control de Accesos de RRHH");
+            System.out.println("11. Perfil de las Contrataciones");
+            System.out.println("12. Gestión de Prestaciones");
+            System.out.println("13. Propuesta de Estabilidad Laboral");
+            System.out.println("14. Supervisión de Empleados");
+            System.out.println("15. Estándares de Empleados");
+            System.out.println("16. Presupuesto de la Planilla");
             System.out.println("20. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
@@ -49,13 +61,11 @@ public class Venta_computadoras {
                     SueldosManager gestorDeSueldos = new SueldosManager(listaEmpleados.listEmpleados);
                     gestorDeSueldos.gestionarSueldos();
                     break;
-
                 case 6:
                     // Gestión de motivaciones
-                    MotivacionManager gestorDeMotivacion = new MotivacionManager(listaEmpleados);
-                    gestorDeMotivacion.gestionarMotivaciones();
+                    MotivacionManager gestorDeMotivacion = new MotivacionManager(); // Inicializamos el gestor
+                    gestorDeMotivacion.gestionarMotivaciones(); // Ejecutamos la lógica de motivaciones
                     break;
-
                 case 7:
                     // Gestión de estrategia empresarial
                     EstrategiaManager gestorDeEstrategia = new EstrategiaManager(listaEmpleados);
@@ -78,9 +88,39 @@ public class Venta_computadoras {
                     // Gestión del control de empleados
                     ControlEmpleadosManager gestorControlEmpleados = new ControlEmpleadosManager();
                     gestorControlEmpleados.gestionarControlEmpleados();
-
                     break;
 
+                case 11:
+                    // Gestión del perfil de las contrataciones
+                    PerfilContratacionesManager gestorPerfilContrataciones = new PerfilContratacionesManager();
+                    gestorPerfilContrataciones.gestionarPerfilesContrataciones();
+                    break;
+
+                case 12:
+                    // Gestión de prestaciones
+                    PrestacionesManager gestorPrestaciones = new PrestacionesManager();
+                    gestorPrestaciones.gestionarPrestaciones();
+                    break;
+                case 13:
+                    // Gestión de propuestas de estabilidad laboral
+                    PropuestaEstabilidadManager gestorPropuestas = new PropuestaEstabilidadManager();
+                    gestorPropuestas.gestionarPropuestasEstabilidad();
+                    break;
+                case 14:
+                    // Gestión de supervisión de empleados
+                    SupervisionManager gestorSupervision = new SupervisionManager();
+                    gestorSupervision.gestionarSupervision();
+                    break;
+                case 15:
+                    // Gestión de estándares de empleados
+                    EstandaresManager gestorEstandares = new EstandaresManager();
+                    gestorEstandares.gestionarEstandares();
+                    break;
+                case 16:
+                    // Gestión del presupuesto de la planilla
+                    PresupuestoPlanillaManager gestorPresupuesto = new PresupuestoPlanillaManager();
+                    gestorPresupuesto.gestionarPresupuesto();
+                    break;
                 case 20:
                     System.out.println("Saliendo del programa...");
                     break;

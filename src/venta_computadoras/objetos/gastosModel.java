@@ -4,10 +4,9 @@
  */
 package venta_computadoras.objetos;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class gastosModel {
 
     private String tipoGasto; // "Fijo" o "Variable"

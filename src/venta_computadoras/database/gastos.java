@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import venta_computadoras.objetos.gastosModel;
 
-/**
- *
- * @author agr12
- */
+
+
+
 public class gastos {
 
     // Lista de gastos predefinidos como objetos de gastosModel

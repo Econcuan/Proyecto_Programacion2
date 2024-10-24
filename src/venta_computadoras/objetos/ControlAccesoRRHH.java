@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author agr12
- */
+
+
+
+
 public class ControlAccesoRRHH extends empleadosModel {
 
     private List<String> historialAccesos;
